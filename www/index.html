@@ -32,11 +32,12 @@
         <img src="./img/background.png" alt="logo">
             <div id="deviceready">
                 <p class="status pending blink">Connecting to Device</p>
-                <p class="status complete blink hide">Device is Ready</p>
-		<p>This, too, shall pass.
+                <p class="status complete blink hide">
+                <button class="complete" onclick="scan();">Scan your Grubster Card</button></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova-2.0.0.js"></script>
+        <script src="barcodescanner.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();

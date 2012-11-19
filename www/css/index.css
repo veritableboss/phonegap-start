@@ -41,7 +41,6 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
@@ -53,8 +52,8 @@ body {
     height:90%;                   /* text area height */
     width:90%;                   /* text area width */
     text-align:center;
-    padding:5% 0 0 0;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:5% 0 0 0;  /* offset vertical: half of image height and text area height */
+    padding:0 0 0 0;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:0 0 0 0;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
 .app img{
