@@ -24,23 +24,22 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova-2.0.0.js"></script>
+        <script src="barcodescanner.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
         <title>Hello World</title>
     </head>
     <body>
-
+        <script type="text/javascript">
+            app.initialize();
+        </script>
         <div class="app">
         <img src="./img/background.png" alt="logo">
             <div id="deviceready">
                 <p class="status pending blink">Connecting to Device</p>
-                <p class="status complete blink hide">
-                <button class="complete" onclick="scan();">Scan your Grubster Card</button></p>
+                <p class="status complete blink hide">Ready</p>
+                <button class="complete" onclick="scan();">Scan your Grubster Card</button>
             </div>
         </div>
-        <script type="text/javascript" src="cordova-2.0.0.js"></script>
-        <script src="barcodescanner.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
     </body>
 </html>
