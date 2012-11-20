@@ -55,6 +55,7 @@ function scan_barcode(){
                $.get('https://grubsterbackend.us/card_dec.php?c='+ grubster_number, function(data) {
                    var short_id = data;
                    alert(short_id);
+                   list_businesses(short_id);
                });
            }else{
                alert("not a grubster card i've ever seen");
@@ -77,3 +78,11 @@ function scan_barcode(){
 );
 };
 
+function list_businesses(id){
+    $('#deviceready').hide();
+    $('.list_loading').show();
+    $.get('./list_restaurants_for_card.php?grubster_id='+id, function(data){
+        $('.list_loading').hide();
+        $('.list_businesses').html(data);
+    });
+}
