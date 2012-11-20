@@ -47,6 +47,7 @@ function scan_barcode(){
    alert(" hopefully the scanner opens!!");
    window.plugins.barcodeScanner.scan( function(result) {
        var barcode = result.text;
+       var url_parts = barcode.split(":");
        $('#info').text(barcode);
        /*
        alert("We got a barcode\n" +
@@ -54,11 +55,12 @@ function scan_barcode(){
                  "Format: " + result.format + "\n" +
                  "Cancelled: " + result.cancelled);
        */
-       /*
-       if (args.format == "QR_CODE") {
-           window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+       if (url_parts[0] == "http" || "https") {
+           window.plugins.childBrowser.showWebPage(barcode, { showLocationBar: false });
+       }else{
+           alert("not a url");
        }
-       */
+       
    }, function(error) {
        alert("Scanning failed: " + error);
    }
