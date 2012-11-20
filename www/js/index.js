@@ -82,7 +82,7 @@ function list_businesses(id){
     console.log("list_businesses started: " + id);
     $('#deviceready').hide();
     $('.list_loading').show();
-    $.get('https://grubsterbackend.us/list_restaurants_for_card.php?grubster_id='+id, function(data){
+    $.get('https://grubsterbackend.us/grubster-registration/list_restaurants_for_card.php?grubster_id='+id, function(data){
         console.log("Here's the HTML: " + data);
         $('.list_loading').hide();
         $('.list_businesses').html(data);
