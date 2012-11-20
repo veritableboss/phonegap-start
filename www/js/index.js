@@ -44,32 +44,21 @@ var app = {
     }
 };
 function scan_barcode(){
-   if(0){
-    console.log('scanning');
-    try {
-        window.plugins.barcodeScanner.scan(function(args) {
-            console.log("Scanner result: \n" +
-                "text: " + args.text + "\n" +
-                "format: " + args.format + "\n" +
-                "cancelled: " + args.cancelled + "\n");
-            /*
-            if (args.format == "QR_CODE") {
-                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-            }
-            */
-            $('#info').text(args.text);
-            console.log(args);
-    });
-    } catch (ex) {
-        console.log(ex.message);
-    }  
-}
    alert(" hopefully the scanner opens!!");
    window.plugins.barcodeScanner.scan( function(result) {
+       var barcode = result.text;
+       $('#info').text(barcode);
+       /*
        alert("We got a barcode\n" +
                  "Result: " + result.text + "\n" +
                  "Format: " + result.format + "\n" +
                  "Cancelled: " + result.cancelled);
+       */
+       /*
+       if (args.format == "QR_CODE") {
+           window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+       }
+       */
    }, function(error) {
        alert("Scanning failed: " + error);
    }
