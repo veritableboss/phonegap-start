@@ -79,9 +79,11 @@ function scan_barcode(){
 };
 
 function list_businesses(id){
+    console.log("list_businesses started: " + id);
     $('#deviceready').hide();
     $('.list_loading').show();
-    $.get('./list_restaurants_for_card.php?grubster_id='+id, function(data){
+    $.get('https://grubsterbackend.com/list_restaurants_for_card.php?grubster_id='+id, function(data){
+        console.log("Here's the HTML: " + data);
         $('.list_loading').hide();
         $('.list_businesses').html(data);
     });
