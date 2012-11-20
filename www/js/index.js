@@ -44,6 +44,7 @@ var app = {
     }
 };
 function scan_barcode(){
+   if(0){
     console.log('scanning');
     try {
         window.plugins.barcodeScanner.scan(function(args) {
@@ -62,5 +63,7 @@ function scan_barcode(){
     } catch (ex) {
         console.log(ex.message);
     }  
+}
+   alert(" click!!")
 };
 
