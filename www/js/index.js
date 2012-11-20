@@ -52,7 +52,7 @@ function scan_barcode(){
            if(grubster_number.length > 8){
                alert("looks like a valid card!");
                //window.plugins.childBrowser.showWebPage(barcode, { showLocationBar: false });
-               $.get('https://grubsterbackend.us/card_dec.php?c='+id, function(data) {
+               $.get('https://grubsterbackend.us/card_dec.php?c='+ grubster_number, function(data) {
                    var short_id = data;
                    alert(short_id);
                });
