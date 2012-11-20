@@ -22,7 +22,6 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-        document.getElementById('scan').addEventListener('click', this.scan, false);
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
@@ -36,29 +35,32 @@ var app = {
         // Toggle the state from "pending" to "complete" for the reported ID.
         // Accomplished by adding .hide to the pending element and removing
         // .hide from the complete element.
-        document.querySelector('#' + id + ' .pending').className += ' hide';
-        var completeElem = document.querySelector('#' + id + ' .complete');
-        completeElem.className = completeElem.className.split('hide').join('');
-    },
-    scan: function() {
-        console.log('scanning');
-        try {
-            window.plugins.barcodeScanner.scan(function(args) {
-                console.log("Scanner result: \n" +
-                    "text: " + args.text + "\n" +
-                    "format: " + args.format + "\n" +
-                    "cancelled: " + args.cancelled + "\n");
-                /*
-                if (args.format == "QR_CODE") {
-                    window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-                }
-                */
-                document.getElementById("info").innerHTML = args.text;
-                console.log(args);
-        });
-        } catch (ex) {
-            console.log(ex.message);
-        }
+        //document.querySelector('#' + id + ' .pending').className += ' hide';
+        //var completeElem = document.querySelector('#' + id + ' .complete');
+        //completeElem.className = completeElem.className.split('hide').join('');
+        //Use Jquery
+        $('.pending').hide();
+        $('.complete').show();
     }
+};
+function scan_barcode(){
+    console.log('scanning');
+    try {
+        window.plugins.barcodeScanner.scan(function(args) {
+            console.log("Scanner result: \n" +
+                "text: " + args.text + "\n" +
+                "format: " + args.format + "\n" +
+                "cancelled: " + args.cancelled + "\n");
+            /*
+            if (args.format == "QR_CODE") {
+                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+            }
+            */
+            $('#info').text(args.text);
+            console.log(args);
+    });
+    } catch (ex) {
+        console.log(ex.message);
+    }  
 };
 
