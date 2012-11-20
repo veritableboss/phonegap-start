@@ -47,19 +47,25 @@ function scan_barcode(){
    alert(" hopefully the scanner opens!!");
    window.plugins.barcodeScanner.scan( function(result) {
        var barcode = result.text;
-       var url_parts = barcode.split(":");
-       $('#info').text(barcode);
+       var grubster_number = barcode.split("?")[1];
+       if(grubster_number){
+           if(grubster_number.length > 8){
+               alert("looks like a valid card!");
+               window.plugins.childBrowser.showWebPage(barcode, { showLocationBar: false });
+           }else{
+               alert("not a grubster card i've ever seen");
+               $('#info').text(barcode);
+           }
+       }else{
+           alert("not a grubster card");
+           $('#info').text(barcode);
+       }
        /*
        alert("We got a barcode\n" +
                  "Result: " + result.text + "\n" +
                  "Format: " + result.format + "\n" +
                  "Cancelled: " + result.cancelled);
        */
-       if (url_parts[0] == "http" || "https") {
-           window.plugins.childBrowser.showWebPage(barcode, { showLocationBar: false });
-       }else{
-           alert("not a url");
-       }
        
    }, function(error) {
        alert("Scanning failed: " + error);
