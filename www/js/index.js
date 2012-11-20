@@ -22,6 +22,7 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+        document.getElementById('scan').addEventListener('click', this.scan, false);
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
@@ -39,16 +40,25 @@ var app = {
         var completeElem = document.querySelector('#' + id + ' .complete');
         completeElem.className = completeElem.className.split('hide').join('');
     }
+    scan: function() {
+        console.log('scanning');
+        try {
+            window.plugins.barcodeScanner.scan(function(args) {
+                console.log("Scanner result: \n" +
+                    "text: " + args.text + "\n" +
+                    "format: " + args.format + "\n" +
+                    "cancelled: " + args.cancelled + "\n");
+                /*
+                if (args.format == "QR_CODE") {
+                    window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+                }
+                */
+                document.getElementById("info").innerHTML = args.text;
+                console.log(args);
+        });
+        } catch (ex) {
+            console.log(ex.message);
+        }
+    }
 };
 
-function scan(){
-    window.plugins.barcodeScanner.scan( function(result) {
-        alert("We got a barcode\n" +
-                  "Result: " + result.text + "\n" +
-                  "Format: " + result.format + "\n" +
-                  "Cancelled: " + result.cancelled);
-    }, function(error) {
-        alert("Scanning failed: " + error);
-    }
-);
-}
